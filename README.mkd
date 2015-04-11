@@ -3,3 +3,18 @@
 
 Text object for nearest block
 
+## Install via el-get
+
+It's not registered yet to MELPA, but you can try easily using el-get.
+
+```emacs
+(el-get-bundle supermomonga/evil-textobj-entire)
+```
+
+## Configure to use
+
+```emacs
+(define-key evil-outer-text-objects-map evil-textobj-multiblock-outer-key 'evil-multiblock-outer-block)
+(define-key evil-inner-text-objects-map evil-textobj-multiblock-inner-key 'evil-multiblock-inner-block)
+```
+

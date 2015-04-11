@@ -73,18 +73,17 @@
 (defun evil-textobj-multiblock-select-nearest-paren (parentheses beg end type count &optional inclusive)
   "Select a nearest parenthesis from current cursor point"
   (let ((selections
-         (cl-remove-if
-          'null
-          (mapcar (lambda (paren)
-                    (let ((open (nth 0 paren)) (close (nth 1 paren)))
-                      (ignore-errors (evil-select-paren open close beg end type count inclusive))))
-                  parentheses))))
-    (if (< (length selections) 1)
-        (error "No surrounding delimiters found")
-      (car (sort selections
-                 (lambda (a b)
-                   (let ((a (car a)) (b (car b)))
-                     (> a b))))))))
+         (cl-loop for (open close) in parentheses
+                  for selected = (ignore-errors (evil-select-paren open close beg end type count inclusive))
+                  for (selected-beg selected-end) = selected
+                  when (and selected (< selected-beg (point)) (> selected-end (point)))
+                  collect selected)))
+    (let ((nearest-selection
+          (car-safe (sort selections
+                          (lambda (a b)
+                              (> (car a) (car b)))))))
+      (if (null nearest-selection)
+          (error "No surrounding delimiters found") nearest-selection))))
 
 (provide 'evil-textobj-multiblock)
 ;;; evil-textobj-multiblock.el ends here

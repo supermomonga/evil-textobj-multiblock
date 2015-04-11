@@ -25,7 +25,7 @@
 ;;; Code:
 
 
-(require 'cl)
+(require 'cl-lib)
 (require 'evil)
 
 (defgroup evil-textobj-multiblock nil

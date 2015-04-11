@@ -20,7 +20,10 @@
 
 ;;; Commentary:
 
-;; monya-
+;; You can define maps as following:
+;; (define-key evil-outer-text-objects-map evil-textobj-multiblock-outer-key 'evil-multiblock-outer-block)
+;; (define-key evil-inner-text-objects-map evil-textobj-multiblock-inner-key 'evil-multiblock-inner-block)
+
 
 ;;; Code:
 
@@ -82,9 +85,6 @@
                  (lambda (a b)
                    (let ((a (car a)) (b (car b)))
                      (> a b))))))))
-
-(define-key evil-outer-text-objects-map evil-textobj-multiblock-outer-key 'evil-multiblock-outer-block)
-(define-key evil-inner-text-objects-map evil-textobj-multiblock-inner-key 'evil-multiblock-inner-block)
 
 (provide 'evil-textobj-multiblock)
 ;;; evil-textobj-multiblock.el ends here

@@ -60,6 +60,10 @@
     ("\"" "\"")
     ("'" "'")
     ("`" "`")
+    ;; for ruby
+    ("def" "end")
+    ("do" "end")
+    ("case" "end")
     )
   "Pair list of beginning and end character of block"
   :type '(list (cons string (cons string (const nil))))

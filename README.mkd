@@ -8,7 +8,7 @@ Text object for nearest block
 It's not registered yet to MELPA, but you can try easily using el-get.
 
 ```emacs
-(el-get-bundle supermomonga/evil-textobj-entire)
+(el-get-bundle supermomonga/evil-textobj-multiblock)
 ```
 
 ## Configure to use

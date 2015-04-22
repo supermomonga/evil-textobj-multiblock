@@ -47,12 +47,16 @@
   :type 'string
   :group 'evil-textobj-multiblock)
 
+;; The types of OPEN and CLOSE specify which kind of THING is used
+;; for parsing with `evil-select-block'. If OPEN and CLOSE are
+;; characters `evil-up-paren' is used. Otherwise OPEN and CLOSE
+;; must be regular expressions and `evil-up-block' is used."
 (defcustom evil-textobj-multiblock-blocks
   '(
-    ("(" ")")
-    ("[" "]")
-    ("{" "}")
-    ("<" ">")
+    (?( ?))
+    (?[ ?])
+    (?{ ?})
+    (?< ?>)
     ("\"" "\"")
     ("'" "'")
     ("`" "`")
@@ -63,11 +67,13 @@
 
 (evil-define-text-object evil-multiblock-outer-block (count &optional beg end type)
   "Select outer of block"
+  :extend-selection nil
   (evil-textobj-multiblock-select-nearest-paren
    evil-textobj-multiblock-blocks beg end type count t))
 
 (evil-define-text-object evil-multiblock-inner-block (count &optional beg end type)
   "Select inner of block"
+  :extend-selection nil
   (evil-textobj-multiblock-select-nearest-paren
    evil-textobj-multiblock-blocks beg end type count))
 
@@ -79,6 +85,7 @@
                   for (selected-beg selected-end) = selected
                   when (and selected (< selected-beg (point)) (> selected-end (point)))
                   collect selected)))
+    (print selections)
     (let ((nearest-selection
           (car-safe (sort selections
                           (lambda (a b)

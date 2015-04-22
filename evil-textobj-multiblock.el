@@ -91,9 +91,7 @@
                   collect selected)))
     (print selections)
     (let ((nearest-selection
-          (car-safe (sort selections
-                          (lambda (a b)
-                              (> (car a) (car b)))))))
+          (car-safe (cl-sort selections #'> :key #'car))))
       (if (null nearest-selection)
           (error "No surrounding delimiters found") nearest-selection))))
 

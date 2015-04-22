@@ -3,7 +3,7 @@
 
 Text object to treat multiple parentheses or blocks by same key.
 
-It's evil port of (osyo-manga/vim-textobj-multiblock)[https://github.com/osyo-manga/vim-textobj-multiblock].
+It's evil port of [osyo-manga/vim-textobj-multiblock](https://github.com/osyo-manga/vim-textobj-multiblock).
 
 ## Install via el-get
 
